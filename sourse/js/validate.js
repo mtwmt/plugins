@@ -52,10 +52,7 @@ validate = (function($){
       var log = [];
       $form.find('input').each(function(i,e){
         if( $(this).parent().hasClass('error') || !$(this).val() ){
-          console.log('err');
           log.push('err');
-        }else{
-          console.log('succ');
         }
       });
 
