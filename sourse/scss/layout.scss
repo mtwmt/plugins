@@ -1,0 +1,34 @@
+@import "reset";
+@import "susy";
+@import "setting";
+@import "function";
+@import "extend";
+@import "mixin";
+@import "input";
+@import "breakpoint";
+
+html,body {
+	-webkit-text-size-adjust: 100%;
+	font-family: "Microsoft JhengHei", "Apple LiGothic Medium", "sans-serif", "serif";
+	color: #000;
+	font-size: 16px;
+}
+header{
+	line-height: rem(60);
+	font-size: rem(20);
+	color: #fff;
+	text-align: center;
+	background-color: #0096ff;
+}
+.container{
+	@include container( rem(680) );
+}
+.form{
+	@extend %clear;
+}
+@for $i from 1 through 24{
+	.col-#{$i}{
+		@include span($i);
+	}
+}
+    
