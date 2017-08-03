@@ -11,43 +11,36 @@ validate = (function($){
         mail: /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/,
         password: /^[a-zA-Z0-9_-]{8,}$/
       },
+      chkArr = ['name','mail','password','same'],
+  chk = function( $select, dom ){
+    if( dom === 'same' ){
+      var target = $select.data('same'),
+          $target = $('.'+ target +'');
+      ( $select.val() != $target.val() )? $select.parent().addClass('error'):'';
 
-  chkName = function( dom ){
-    dom.each(function(i,e){
-      cls = (!check.name.test( $(this).val() )) ? 'addClass':'removeClass';
-      $(this).parent()[cls]('error');
-    });
+    }else if( !check[dom].test( $select.val() ) ){
+      $select.parent().addClass('error');
+      console.log( $select );
+    }
   },
-  chkMail = function( dom ){
-    dom.each(function(){
-      cls = (!check.mail.test( $(this).val() )) ? 'addClass':'removeClass';
-      $(this).parent()[cls]('error');
-    });
-  },
-  chkPassword = function( dom ){
-    dom.each(function(){
-      cls = (!check.password.test( $(this).val() )) ? 'addClass':'removeClass';
-      $(this).parent()[cls]('error');
-    });
-  },
-  chkSame = function( dom ){
-    var target = dom.data('same'),
-        $target = $('.'+ target +'');
-    cls = ( dom.val() != $target.val() ) ? 'addClass':'removeClass';
-    dom.parent()[cls]('error');
-  },
+  
   init = function(){
 
-    $form.find('input').each(function(){
-      log = [];
+    console.log(  document.getElementsByTagName('input'),$('input') );
+    
+    $form.find('input').each(function(i, e){
+      var input = this;
       $(this).on('blur',function(){
-        chkName( $('[data-name]') );
-        chkMail( $('[data-mail]') );
-        chkPassword( $('[data-password]') );
-        chkSame( $('[data-same]') );
+        $(this).parent().removeClass('error');
+       
+        $.each(chkArr,function(idx,el ){
+          if( input.hasAttribute(`data-${ chkArr[idx] }`) ){
+            chk( $(input),el );
+          }
+        });
       });
-     
     });
+
     $submit.on('click',function(){
       var log = [];
       $form.find('input').each(function(i,e){

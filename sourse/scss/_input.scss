@@ -31,7 +31,8 @@
     }
   }
   &.error input{
-    &:focus{ border-color:$err; }
+    color: $err;
+    border-color:$err; 
     &:focus ~ label,&:valid ~ label{ color:$err; }
   }
 }
