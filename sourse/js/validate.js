@@ -7,7 +7,7 @@ validate = (function($){
       cls,
       log,
       check = {
-        name: /^[a-zA-Z0-9_-]{4,16}$/, //4到16位（字母，數字，底線，連接線 ）
+        name: /^[a-zA-Z0-9\u4e00-\u9fa5]{1,7}$/,
         mail: /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/,
         password: /^[a-zA-Z0-9_-]{8,}$/
       },
@@ -26,8 +26,6 @@ validate = (function($){
   
   init = function(){
 
-    console.log(  document.getElementsByTagName('input'),$('input') );
-    
     $form.find('input').each(function(i, e){
       var input = this;
       $(this).on('blur',function(){
