@@ -2,7 +2,7 @@ var validate = validate || {};
 
 validate = (function($){
 
-  var $form = $('.form'),
+  var $form = $('[data-form]'),
       $submit = $('[data-submit]'),
       cls,
       log,
@@ -12,47 +12,63 @@ validate = (function($){
         password: /^[a-zA-Z0-9_-]{8,}$/
       },
       chkArr = ['name','mail','password','same'],
-  chk = function( $select, dom ){
-    if( dom === 'same' ){
+  chk = function( $select, obj, msg ){
+    
+    var str,
+        newStr;
+
+        $select.removeClass('error');
+
+        if( !$select.is('[data-msg]') ){
+          str = $select.find('[data-msg]').text();
+          newStr = str.replace(msg ,'');
+          $select.find('[data-msg]').text(newStr);
+        }else{
+          $select.find('p').remove('p');
+        }
+
+    if( obj === 'same' ){
       var target = $select.data('same'),
           $target = $('.'+ target +'');
-      ( $select.val() != $target.val() )? $select.parent().addClass('error'):'';
-
-    }else if( !check[dom].test( $select.val() ) ){
-      $select.parent().addClass('error');
-      console.log( $select );
+      ( $select.find('input').val() != $target.find('input').val() )? $select.addClass('error'):'';
+      
+    }else if( !check[obj].test( $select.find('input').val() ) ){
+      $select.addClass('error');
+      if( !$select.is('[data-msg]') ){
+        $select.find('[data-msg]').append(msg);
+      }else{
+        $select.append(`<p>${msg}</p>`);
+      }
     }
   },
   
   init = function(){
-
-    $form.find('input').each(function(i, e){
-      var input = this;
-      $(this).on('blur',function(){
-        $(this).parent().removeClass('error');
-       
-        $.each(chkArr,function(idx,el ){
-          if( input.hasAttribute(`data-${ chkArr[idx] }`) ){
-            chk( $(input),el );
-          }
+    $.each(chkArr,function(i,e){
+      $(`[data-${e}]`).each(function(idx,el){
+        var $input = $(this).find('input'),
+            msg = $(this).find('[data-msg]').data('msg') || $(this).data('msg');
+        $input.on('blur',function(){
+          chk( $(el),e ,msg);
+          
         });
       });
     });
-
     $submit.on('click',function(){
       var log = [];
-      $form.find('input').each(function(i,e){
-        if( $(this).parent().hasClass('error') || !$(this).val() ){
+      $.each(chkArr,function(i,e){
+        if( $(`[data-${e}]`).hasClass('error') || !$(`[data-${e}]`).find('input').val() ){
+          $(`[data-${e}]`).addClass('error');
           log.push('err');
         }
       });
-
+      
       if( (log.length) != 0 ){
         alert('error');
       }else{
         alert('success');
       }
     });
+
   }
 
   return{
