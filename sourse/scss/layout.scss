@@ -4,8 +4,10 @@
 @import "function";
 @import "extend";
 @import "mixin";
+
 @import "input";
 @import "breakpoint";
+@import "icon";
 
 html,body {
 	-webkit-text-size-adjust: 100%;
@@ -14,14 +16,14 @@ html,body {
 	font-size: 16px;
 }
 header{
-	line-height: rem(60);
-	font-size: rem(20);
+	line-height: rem(60px);
+	font-size: rem(20px);
 	color: #fff;
 	text-align: center;
 	background-color: #0096ff;
 }
 .container{
-	@include container( rem(680) );
+	@include container( rem(680px) );
 }
 .form{
 	@extend %clear;
@@ -31,4 +33,4 @@ header{
 		@include span($i);
 	}
 }
-    
+

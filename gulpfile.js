@@ -4,6 +4,7 @@ var gulp          = require('gulp');
 var del           = require('del');
 var plumber       = require('gulp-plumber');
 var sass          = require('gulp-sass');
+var base64        = require('gulp-base64-inline');
 var pug           = require('gulp-pug');
 var autoprefixer  = require('gulp-autoprefixer');
 var sourcemaps    = require('gulp-sourcemaps');
@@ -29,9 +30,12 @@ gulp.task('css',function(){
         cssName: '_icon.scss',
         imgPath: '../images/icon.png',
         padding: 10,
-        cssTemplate: 'sprite.setting',
+        cssTemplate: 'sprite.handlebars',
         cssFormat: 'scss',
-        algorithm: 'top-down'
+        algorithm: 'top-down',
+        cssOpts:{
+          spriteName: 'icon'
+        }
       }));
   var imgStream = sprite.img
       .pipe(gulp.dest('public/images'));
@@ -46,6 +50,7 @@ gulp.task('css',function(){
         }).on('error',sass.logError))
       .pipe(autoprefixer())
       .pipe(sourcemaps.write())
+      .pipe(base64('../../public/images'))
       .pipe(gulp.dest('public/css'));
   return sprite, imgStream, cssStream, scss;
 });
