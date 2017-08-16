@@ -15,13 +15,21 @@ validate = function ($) {
     mail: function mail() {
       return RegExp(/^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/);
     },
-    password: function password(min, max) {
+    mobile: function mobile() {
+      return RegExp(/^09[0-9]{8}$/);
+    },
+    password: function password(dom, min, max) {
       var min = min || '',
           max = max || '';
       return RegExp('[a-zA-Z0-9_-]{' + min + ',' + max + '}$');
+    },
+    same: function same(dom) {
+      var target = dom.data('same'),
+          $target = $('.' + target + '');
+      console.log($target.find('input').val());
+      return RegExp('' + $target.find('input').val());
     }
   },
-      chkArr = ['name', 'mail', 'password', 'same'],
       chkErr = function chkErr($select, msg) {
     $select.addClass('error');
     if (!$select.is('[data-msg]')) {
@@ -44,35 +52,31 @@ validate = function ($) {
     } else {
       $select.find('p').remove('p');
     }
-
-    if (obj === 'same') {
-      var target = $select.data('same'),
-          $target = $('.' + target + '');
-
-      if ($select.find('input').val() != $target.find('input').val()) {
-        chkErr($select, msg);
-      }
-    } else if (!check[obj](minLen, maxLen).test($select.find('input').val())) {
+    if (!check[obj]($select, minLen, maxLen).test($select.find('input').val())) {
       chkErr($select, msg);
     }
   },
       init = function init() {
 
-    $.each(chkArr, function (i, e) {
-      $('[data-' + e + ']').each(function (idx, el) {
+    // console.log( check,chkArr );
+
+    $.each(check, function (i, e) {
+      $('[data-' + i + ']').each(function (idx, el) {
         var $input = $(this).find('input'),
             msg = $(this).find('[data-msg]').data('msg') || $(this).data('msg');
         $input.on('blur', function () {
-          chk($(el), e, msg);
+          chk($(el), i, msg);
         });
       });
     });
     $submit.on('click', function () {
       var log = [];
-      $.each(chkArr, function (i, e) {
-        $('[data-' + e + ']').each(function (idx, el) {
+      $.each(check, function (i, e) {
+        $('[data-' + i + ']').each(function (idx, el) {
+          console.log(i, $(this).find('input').val());
           if ($(this).hasClass('error') || !$(this).find('input').val()) {
             $(this).addClass('error');
+            log.push('err');
           }
         });
       });

@@ -4,15 +4,13 @@
 @import "function";
 @import "extend";
 @import "mixin";
-
 @import "input";
 @import "breakpoint";
-@import "icon";
 
 html,body {
 	-webkit-text-size-adjust: 100%;
 	font-family: "Microsoft JhengHei", "Apple LiGothic Medium", "sans-serif", "serif";
-	color: #000;
+	color: #333;
 	font-size: 16px;
 }
 header{
@@ -24,7 +22,34 @@ header{
 }
 .container{
 	@include container( rem(680px) );
+	padding-top: rem(20px);
 }
+p{ line-height: rem(24px); }
+
+table{
+	max-width: 100%;
+  width:100%;
+	border-collapse: collapse;
+	
+	caption,th,td{
+		padding: rem(15px) rem(10px);
+	}
+	caption{
+		background: #efefef;
+		border-bottom:1px dashed #ccc;
+	}
+	th{
+		text-align: left;
+		color: #fff;
+		background: #999;
+		border-bottom:1px solid #fff;
+	}
+	td{
+		border-bottom:1px dashed #ccc;
+	}
+}
+
+
 .form{
 	@extend %clear;
 }
