@@ -1,0 +1,23 @@
+
+
+table{
+	max-width: 100%;
+  width:100%;
+	border-collapse: collapse;
+	caption,th,td{
+		padding: rem(15px) rem(10px);
+	}
+	caption{
+		background: #efefef;
+		border-bottom:1px dashed #ccc;
+	}
+	th{
+		text-align: left;
+		color: #fff;
+		background: #999;
+		border-bottom:1px solid #fff;
+	}
+	td{
+		border-bottom:1px dashed #ccc;
+	}
+}

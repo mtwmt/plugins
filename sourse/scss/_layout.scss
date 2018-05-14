@@ -1,0 +1,54 @@
+@import "reset";
+// @import "susy";
+@import "setting";
+@import "function";
+@import "extend";
+@import "mixin";
+@import "input";
+// @import "breakpoint";
+
+html,body {
+	-webkit-text-size-adjust: 100%;
+	font-family: "Microsoft JhengHei", "Apple LiGothic Medium", "sans-serif", "serif";
+	color: #333;
+	font-size: 16px;
+}
+
+a{ 
+	text-decoration: none; 
+	display: block;
+	transition: .3s;
+	&:hover{
+		text-decoration: none;
+		opacity: 0.7;
+	}
+}
+
+header{
+	line-height: rem(60px);
+	font-size: rem(20px);
+	color: #fff;
+	text-align: center;
+	background-color: #1166bb;
+}
+.container{
+	// @include container( rem(680px) );
+	@include maxWidth( 680px, 16px );
+	padding-top: rem(20px);
+}
+p{ line-height: rem(24px); }
+
+pre{
+	margin-top: 1rem;
+	margin-bottom: 1rem;
+	display: block;
+	font-size: 87.5%;
+	background: #f1ecec;
+	color: #555;
+	max-height: 70vh;
+	overflow: auto;
+	line-height: 1.5rem;
+	padding: 1rem 1.5rem;
+	// -moz-tab-size: 4;
+  tab-size: 1rem;
+}

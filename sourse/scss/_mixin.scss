@@ -1,4 +1,35 @@
 
+// 最大寬
+@mixin maxWidth( $width, $space){
+  padding: 0 rem( $space );
+  max-width: rem( $width + ($space*2) );
+  margin-left: auto;
+  margin-right: auto; 
+}
+
+
+// grid
+@function span( $grid, $column, $gutter: 0 ){
+  @return ( 100 / $grid ) * $column + 0% ;
+}
+
+@mixin span( $grid, $column, $gutter: 0 ,$nth: none){
+  width: span( $grid, $column);
+  padding: 0 rem($gutter) / 2;
+  box-sizing: border-box;
+
+  @if $nth == first{
+    margin-left: rem(-$gutter) / 2;
+  }@else if $nth == last{
+    margin-right: rem(-$gutter) / 2;
+  }@else if $nth == none{
+    margin-left :auto;
+    margin-right :auto;
+  }
+}
+
+
+
 // animation
 @mixin animation($animation...) {
   -o-animation: $animation;

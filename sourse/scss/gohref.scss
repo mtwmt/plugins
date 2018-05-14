@@ -1,0 +1,61 @@
+@import "layout";
+@import "table";
+
+.tbl{
+	margin: rem(20px) 0;
+	@include maxWidth( 680px, 16px );
+}
+
+.container{
+	
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: flex-end;
+}
+
+nav{
+	@include span(6, 1);
+
+	position: fixed;
+	top: 50%;
+	left: 10%;
+	ul{
+		text-align: center;
+		li{
+			margin-bottom: rem(8px);
+			a{
+				border-radius: rem(4px);
+				padding: 0 rem(16px);
+				line-height: rem(32px);
+				color: #fff;
+				background: #1E88E5;
+			}
+		}
+	}
+}
+
+$types: (
+  about: #E91E63,
+	news: #9C27B0,
+	event: #FFEB3B,
+	service: #4CAF50,
+	contact: #2196F3
+);
+//按鈕
+@each $name, $color in $types {
+  ##{$name} {
+    background:$color;
+    color:#fff;
+    border: 1px solid darken($color,5%);
+  }
+}
+
+
+article{
+	
+	@include span(6, 4,0 ,'last');
+	section{
+		
+		height: 70vh;
+	}
+}

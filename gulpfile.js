@@ -46,7 +46,7 @@ gulp.task('css',function(){
       .pipe(sourcemaps.init())
       .pipe( sass({ 
           outputStyle:'compact',
-          includePaths: ['node_modules/susy/sass','node_modules/breakpoint-sass/stylesheets']
+          // includePaths: ['node_modules/susy/sass','node_modules/breakpoint-sass/stylesheets']
         }).on('error',sass.logError))
       .pipe(autoprefixer())
       .pipe(sourcemaps.write())
@@ -66,14 +66,15 @@ gulp.task('js',function(){
 });
 
 gulp.task('html', function() {
-  var build = gulp.src(['sourse/*.pug','sourse/**/*.pug','sourse/*.html','sourse/**/*.html'])
+  // var build = gulp.src(['sourse/*.pug','sourse/**/*.pug','sourse/*.html','sourse/**/*.html'])
+  var build = gulp.src(['sourse/*.html','sourse/**/*.html'])
       .pipe(plumber())
       .pipe(fileinclude({
         prefix: '@@'
       }))
-      .pipe(pug({ 
-        pretty:'\t' 
-      }))
+      // .pipe(pug({ 
+      //   pretty:'\t' 
+      // }))
       .pipe(prettify({indent_size: 2}))
       .pipe(gulp.dest('public'));
   return build;
@@ -87,6 +88,7 @@ gulp.task('watch',function(){
   gulp.watch('sourse/images/img/**',['img']);
   gulp.watch('sourse/scss/*.scss',['css']);
   gulp.watch('sourse/js/*.js',['js']);
-  gulp.watch(['sourse/*.pug','sourse/**/*.pug','sourse/*.html','sourse/**/*.html'],['html']);
+  // gulp.watch(['sourse/*.pug','sourse/**/*.pug','sourse/*.html','sourse/**/*.html'],['html']);
+  gulp.watch(['sourse/*.html','sourse/**/*.html'],['html']);
   gulp.watch('public/**',['clean']);
 });

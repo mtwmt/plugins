@@ -1,0 +1,16 @@
+@import "layout";
+@import "table";
+
+
+
+
+.form{
+	@extend %clear;
+}
+
+@for $i from 1 through 24{
+	.col-#{$i}{
+		@include span( 24 ,$i, 16px );
+		float:left;
+	}
+}
