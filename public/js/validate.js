@@ -50,7 +50,7 @@ validate = function ($) {
       newStr = str.replace(msg, '');
       $select.find('[data-msg]').text(newStr);
     } else {
-      $select.find('.err-msg').remove('err-msg');
+      $select.find('.err-msg').remove('.err-msg');
     }
     if (!check[obj]($select, minLen, maxLen).test($select.find('input').val())) {
       chkErr($select, msg);
