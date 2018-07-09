@@ -33,7 +33,7 @@ validate = (function($){
     if( !$select.is('[data-msg]') ){
       $select.find('[data-msg]').append(msg);
     }else{
-      $select.append(`<p>${msg}</p>`);
+      $select.append(`<em class="err-msg">${msg}</em>`);
     }
   },
   chk = function( $select, obj, msg ){
@@ -48,7 +48,7 @@ validate = (function($){
           newStr = str.replace(msg ,'');
           $select.find('[data-msg]').text(newStr);
         }else{
-          $select.find('p').remove('p');
+          $select.find('.err-msg').remove('err-msg');
         }
     if( !check[obj]( $select, minLen, maxLen ).test( $select.find('input').val() ) ){
       chkErr( $select,msg );
@@ -56,9 +56,6 @@ validate = (function($){
   },
   
   init = function(){
-
-    // console.log( check,chkArr );
-
     $.each( check,function(i, e){
       $(`[data-${i}]`).each(function(idx,el){
         var $input = $(this).find('input'),
