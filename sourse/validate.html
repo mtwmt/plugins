@@ -60,48 +60,49 @@
     <div class="version">
       <p> v2.0 修改為套件，與驗証方式</p>  
     </div>
-    <div class="form" data-form>
-      <div class="col-12">
-        <div class="field" data="input-focus" data-verify="name" data-msg="請填入姓">
-          <input type="text" required />
-          <label for="">First Name</label>
+    <div data-form>
+      <div class="form">
+        <div class="col-12">
+          <div class="field" data="input-focus" data-verify="name" data-msg="請填入姓">
+            <input type="text" required />
+            <label for="">First Name</label>
+          </div>
         </div>
+        <div class="col-12">
+          <div class="field" data="input-focus" data-verify="name">
+            <input type="text" required/>
+            <label for="" data-msg="請填入名">Last Name</label>
+          </div>
+        </div>
+        <div class="col-24">
+          <div class="field" data="input-focus" data-verify="mobile">
+            <input type="text" required/>
+            <label for="" data-msg="請輸入手機號碼">Mobile Number</label>
+          </div>
+        </div>
+        <div class="col-24">
+          <div class="field" data="input-focus" data-verify="mail">
+            <input type="text" required />
+            <label for="">Mail</label>
+          </div>
+        </div>
+        <div class="col-24">
+          <div class="fieldn pwd" data="input-focus" data-verify="password" data-min="8">
+            <input type="password" required />
+            <label data-msg="最少8碼" for="">Password</label>
+          </div>
+        </div>
+        <div class="col-24">
+          <div class="field" data="input-focus" data-verify="same" data-same="pwd">
+            <input type="password" required/>
+            <label data-msg="請輸入相同密碼" for="">Check Password</label>
+          </div>
+        </div>  
       </div>
-      <div class="col-12">
-        <div class="field" data="input-focus" data-verify="name">
-          <input type="text" required/>
-          <label for="" data-msg="請填入名">Last Name</label>
-        </div>
+      <div class="btns">
+        <a href="#" class="btn" data-submit>SUBMIT</a>
       </div>
-      <div class="col-24">
-        <div class="field" data="input-focus" data-verify="mobile">
-          <input type="text" required/>
-          <label for="" data-msg="請輸入手機號碼">Mobile Number</label>
-        </div>
-      </div>
-      <div class="col-24">
-        <div class="field" data="input-focus" data-verify="mail">
-          <input type="text" required />
-          <label for="">Mail</label>
-        </div>
-      </div>
-      <div class="col-24">
-        <div class="fieldn pwd" data="input-focus" data-verify="password" data-min="8">
-          <input type="password" required />
-          <label data-msg="最少8碼" for="">Password</label>
-        </div>
-      </div>
-      <div class="col-24">
-        <div class="field" data="input-focus" data-verify="same" data-same="pwd">
-          <input type="password" required/>
-          <label data-msg="請輸入相同密碼" for="">Check Password</label>
-        </div>
-      </div>  
     </div>
-    <div class="btns">
-       <a href="#" class="btn" data-submit>SUBMIT</a>
-    </div>
-    
   </div>
 </main>
   @@include('include/footer.html')
@@ -115,10 +116,12 @@
    $('[data-form]').validate(
      {
        success: function(){
-         console.log( 'success' )
+        //  console.log( 'success' )
+        alert( 'success' );
        },
        error: function(){
-        console.log( 'error' )
+        // console.log( 'error' )
+        alert( 'error' );
        }
      }
    );

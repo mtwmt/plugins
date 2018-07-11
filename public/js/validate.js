@@ -12,8 +12,8 @@
     }, options);
 
     var $form = $(this),
-        $verify = $('[data-verify]'),
-        $submit = $('[data-submit]'),
+        $verify = $form.find('[data-verify]'),
+        $submit = $form.find('[data-submit]'),
         check = {
       name: function name() {
         return RegExp(/^[a-zA-Z0-9\u4e00-\u9fa5]{1,7}$/);
@@ -79,11 +79,13 @@
           log.push('err');
         }
       });
+
       if (!log.length) {
         $(this).one('success', options.success).trigger('success');
       } else {
         $(this).one('error', options.error).trigger('error');
       }
+      return false;
     };
     $verify.on('test', actValidate).on('blur', 'input', function () {
       $(this).trigger('test');
