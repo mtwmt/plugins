@@ -12,81 +12,97 @@
    <!-- header
     .title 表單驗証 v1.0 -->
   <header>
-    <div class="title">表單驗証 v1.0</div>
+    <div class="title">表單驗証 v2.0</div>
   </header>
 <main>
   <div class="container">
-
     <table>
       <caption>說明文件</caption>
       <tr>
-        <th width="20%">data-neme</th>
-        <td width="80%">驗証姓名</td>
+        <th width="30%">data-verify="name"</th>
+        <td width="70%">驗証姓名</td>
       </tr>
       <tr>
-        <th>data-mail</th>
+        <th>data-verify="mail"</th>
         <td>驗証mail</td>
       </tr>
       <tr>
-        <th>data-mobile</th>
+        <th>data-verify="mobile"</th>
         <td>驗証手機</td>
       </tr>
       <tr>
-        <th>data-password</th>
+        <th>data-verify="password"</th>
         <td>驗証密碼</td>
       </tr>
       <tr>
-        <th>data-same</th>
+        <th>data-verify="same"</th>
         <td>驗証相同欄位 (將需要被一致的欄位 新增一個與data-same裡的值 一樣的classname) <br />例：data-same="same" 需要被相同的欄位上則是加上 class="same"</td>
       </tr>
       <tr>
         <th>data-msg</th>
         <td>錯誤訊息文字<br />填在子層 訊息會顯示在 所填的tag裡<br />填在父層(與驗証data-name)同一層裡 則會在子層建立一個p 將錯誤訊息顯示在p 裡</td>
       </tr>
+      <tr>
+        <th>data-submit</th>
+        <td>送出</td>
+      </tr>
     </table>
-
-    <div class="form" data-form>
-      <div class="col-12">
-        <div class="field" data="input-focus" data-name data-msg="請填入姓">
-          <input type="text" required />
-          <label for="">First Name</label>
-        </div>
-      </div>
-      <div class="col-12">
-        <div class="field" data="input-focus" data-name>
-          <input type="text" required/>
-          <label for="" data-msg="請填入名">Last Name</label>
-        </div>
-      </div>
-      <div class="col-24">
-        <div class="field" data="input-focus" data-mobile>
-          <input type="text" required/>
-          <label for="" data-msg="請輸入手機號碼">Mobile Number</label>
-        </div>
-      </div>
-      <div class="col-24">
-        <div class="field" data="input-focus" data-mail>
-          <input type="text" required />
-          <label for="">Mail</label>
-        </div>
-      </div>
-      <div class="col-24">
-        <div class="fieldn pwd" data="input-focus" data-password data-min="8">
-          <input type="password" required />
-          <label data-msg="最少8碼" for="">Password</label>
-        </div>
-      </div>
-      <div class="col-24">
-        <div class="field" data="input-focus" data-same="pwd">
-          <input type="password" required/>
-          <label data-msg="請輸入相同密碼" for="">Check Password</label>
-        </div>
-      </div>  
+    <pre>
+      $('[data-form]').validate({
+        success: function(){
+          // 送出成功後 所要執行的事件
+        },
+        error: function(){
+          // 送出失敗後 所要執行的事件
+        }
+      });
+    </pre>
+    <div class="version">
+      <p> v2.0 修改為套件，與驗証方式</p>  
     </div>
-    <div class="btns">
-       <a href="#" class="btn" data-submit>SUBMIT</a>
+    <div data-form>
+      <div class="form">
+        <div class="col-12">
+          <div class="field" data="input-focus" data-verify="name" data-msg="請填入姓">
+            <input type="text" required />
+            <label for="">First Name</label>
+          </div>
+        </div>
+        <div class="col-12">
+          <div class="field" data="input-focus" data-verify="name">
+            <input type="text" required/>
+            <label for="" data-msg="請填入名">Last Name</label>
+          </div>
+        </div>
+        <div class="col-24">
+          <div class="field" data="input-focus" data-verify="mobile">
+            <input type="text" required/>
+            <label for="" data-msg="請輸入手機號碼">Mobile Number</label>
+          </div>
+        </div>
+        <div class="col-24">
+          <div class="field" data="input-focus" data-verify="mail">
+            <input type="text" required />
+            <label for="">Mail</label>
+          </div>
+        </div>
+        <div class="col-24">
+          <div class="fieldn pwd" data="input-focus" data-verify="password" data-min="8">
+            <input type="password" required />
+            <label data-msg="最少8碼" for="">Password</label>
+          </div>
+        </div>
+        <div class="col-24">
+          <div class="field" data="input-focus" data-verify="same" data-same="pwd">
+            <input type="password" required/>
+            <label data-msg="請輸入相同密碼" for="">Check Password</label>
+          </div>
+        </div>  
+      </div>
+      <div class="btns">
+        <a href="#" class="btn" data-submit>SUBMIT</a>
+      </div>
     </div>
-    
   </div>
 </main>
   @@include('include/footer.html')
@@ -94,3 +110,22 @@
 </html>
 @@include('include/distjs.html')
 <script src="js/validate.js"></script>
+<script>
+  $(window).ready(function(){
+
+   $('[data-form]').validate(
+     {
+       success: function(){
+        //  console.log( 'success' )
+        alert( 'success' );
+       },
+       error: function(){
+        // console.log( 'error' )
+        alert( 'error' );
+       }
+     }
+   );
+
+  });
+
+</script>
