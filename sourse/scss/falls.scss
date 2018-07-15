@@ -1,0 +1,33 @@
+@import "layout";
+@import "table";
+
+.tbl{
+	margin: rem(20px) 0;
+	@include maxWidth( 680px, 16px );
+}
+
+$bg: (
+  a1: #E91E63, 
+	a2: #9C27B0,
+	a3: #FFEB3B,
+	a4: #4CAF50,
+);
+
+
+// $type(
+// 	a1:(
+// 		bg: #E91E63, 
+// 		width: 200px,
+// 		height: 100px
+// 	),
+// 	a2:(
+// 		bg: #9C27B0, 
+// 		width: 150px,
+// 		height: 150px
+// 	),
+// 	a3:(
+// 		bg: #9C27B0, 
+// 		width: 150px,
+// 		height: 150px
+// 	)
+// );

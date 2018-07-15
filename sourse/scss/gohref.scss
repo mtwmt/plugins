@@ -7,7 +7,7 @@
 }
 
 .container{
-	
+	padding-top: 0;
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: flex-end;
@@ -15,10 +15,9 @@
 
 nav{
 	@include span(6, 1);
-
 	position: fixed;
 	top: 50%;
-	left: 10%;
+	left: 12%;
 	ul{
 		text-align: center;
 		li{
@@ -29,6 +28,11 @@ nav{
 				line-height: rem(32px);
 				color: #fff;
 				background: #1E88E5;
+				border: 1px solid darken(#1E88E5,5%);
+				&[href="#gotop"]{
+					
+					background: #159;
+				}
 			}
 		}
 	}
@@ -52,10 +56,32 @@ $types: (
 
 
 article{
-	
-	@include span(6, 4,0 ,'last');
+	@include span(6, 4.5, 0 ,'last');
 	section{
-		
 		height: 70vh;
 	}
 }
+
+@media (max-width: 720px) {
+	.container{
+		display: block;
+	}
+	nav{
+		@include span(6, 6);
+		position: fixed;
+		top: 50%;
+		left: 0%;
+		ul{
+			li{
+				display: inline-block;
+			}
+		}
+	}
+	article{
+		@include span(6, 6);
+	}
+}
+
+// @include breakpoint(max-width 960px){
+	
+// }

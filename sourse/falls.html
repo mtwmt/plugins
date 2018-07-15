@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="css/falls.css">
+  <title>瀑布流</title>
+</head>
+<body>
+  <div id="gotop"></div>
+  <header>
+    <div class="title">滑到錨點位置</div>
+  </header>
+<main>
+  <div class="tbl">
+    <table>
+      <caption>說明文件</caption>
+      <tr>
+        <th width="20%">top</th>
+        <td width="80%">錨點位子距離頂端高度，預設值為0</td>
+      </tr>
+      <tr>
+        <th width="20%">speed</th>
+        <td width="80%">滑動速度，預設值為400</td>
+      </tr>
+    </table>
+   
+  </div>
+  <div class="container">
+    
+    <div class="m-falls" data-falls>
+      <div class="a1"></div>
+      <div class="a1"></div>
+      <div class="a2"></div>
+      <div class="a4"></div>
+      <div class="a3"></div>
+      <div class="a1"></div>
+      <div class="a2"></div>
+      <div class="a4"></div>
+      <div class="a2"></div>
+      <div class="a1"></div>
+    </div>
+    
+  </div>
+</main>
+  @@include('include/footer.html')
+</body>
+</html>
+@@include('include/distjs.html')
+<script src="js/falls.js"></script>
+<script>
+  $(window).ready(function(){
+
+   $('[data-falls]').falls();
+  });
+
+</script>
